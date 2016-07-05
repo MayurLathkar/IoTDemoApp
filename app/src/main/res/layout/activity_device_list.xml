@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#7986CB"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/activity_vertical_margin">
+    android:padding="6dp">
 
     <TextView
         android:id="@+id/tv_status"
@@ -11,10 +13,14 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="17sp"
+        android:textColor="@android:color/white"
+        android:textAppearance="?android:textAppearanceMedium"
         android:text="List of Devices" />
 
     <ListView
         android:id="@+id/lv_paired"
+        android:padding="16dp"
+        android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"

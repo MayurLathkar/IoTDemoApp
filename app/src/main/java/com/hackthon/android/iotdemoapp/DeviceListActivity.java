@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -190,7 +191,7 @@ public class DeviceListActivity extends Activity {
                     @Override
                     public void run() {
                         try {
-                            OutputStream outStream = bluetoothSocket.getOutputStream();
+                            final OutputStream outStream = bluetoothSocket.getOutputStream();
                             InputStream inputStream = bluetoothSocket.getInputStream();
                             byte[] byteString = ("ping").getBytes();
 
@@ -216,14 +217,18 @@ public class DeviceListActivity extends Activity {
                                 bytes = mmInStream.read(buffer);
                                 final String listOfWifi = new String(buffer, 0, bytes);
                                 Log.d("Wifi List==>", listOfWifi);
+                                final ArrayList<String> seperatedWifiList = new ArrayList<String>();
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Intent i = new Intent(DeviceListActivity.this, WifiActivity.class);
-                                        Bundle bundle = new Bundle();
-                                        bundle.putString("WifiList", listOfWifi);
-                                        i.putExtras(bundle);
-                                        startActivity(i);
+
+                                        String[] list = listOfWifi.split(",");
+                                        for (String listItem : list){
+                                            seperatedWifiList.add(listItem);
+                                        }
+
+                                        WifiListAdapter adapter = new WifiListAdapter(DeviceListActivity.this, seperatedWifiList, outStream);
+                                        mListView.setAdapter(adapter);
                                     }
                                 });
                             }
