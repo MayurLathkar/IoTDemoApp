@@ -111,8 +111,6 @@ public class DeviceListActivity extends Activity {
             ThreadConnectBTdevice threadConnectBTdevice = new ThreadConnectBTdevice(device);
             threadConnectBTdevice.start();
 
-//            byte[] byteString = ("ping").getBytes();
-//            deviceSocket.getOutputStream().write(byteString);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -216,12 +214,16 @@ public class DeviceListActivity extends Activity {
                                 outStream.write(wifiList);
                                 mmInStream = new DataInputStream(inputStream);
                                 bytes = mmInStream.read(buffer);
-                                String wifimessage = new String(buffer, 0, bytes);
-                                Log.d("Wifi List==>", wifimessage);
+                                final String listOfWifi = new String(buffer, 0, bytes);
+                                Log.d("Wifi List==>", listOfWifi);
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-
+                                        Intent i = new Intent(DeviceListActivity.this, WifiActivity.class);
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("WifiList", listOfWifi);
+                                        i.putExtras(bundle);
+                                        startActivity(i);
                                     }
                                 });
                             }
