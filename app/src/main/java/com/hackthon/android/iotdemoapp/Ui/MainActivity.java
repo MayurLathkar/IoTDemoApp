@@ -1,4 +1,4 @@
-package com.hackthon.android.iotdemoapp;
+package com.hackthon.android.iotdemoapp.ui;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -10,27 +10,27 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hackthon.android.iotdemoapp.service.LocationService;
+import com.hackthon.android.iotdemoapp.R;
+
 import java.util.ArrayList;
 import java.util.Set;
 
-/**
- * Main activity.
- *
- * @author Lorensius W. L. T <lorenz@londatiga.net>
- */
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     private TextView mStatusTv;
     private Button mActivateBtn;
     private Button mPairedBtn;
     private Button mScanBtn;
-
     private ProgressDialog mProgressDlg;
 
     private ArrayList<BluetoothDevice> mDeviceList = new ArrayList<BluetoothDevice>();
@@ -75,15 +75,20 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_actionbar);
         setContentView(R.layout.activity_main);
-
         mStatusTv = (TextView) findViewById(R.id.tv_status);
         mActivateBtn = (Button) findViewById(R.id.btn_enable);
         mPairedBtn = (Button) findViewById(R.id.btn_view_paired);
         mScanBtn = (Button) findViewById(R.id.btn_scan);
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+
+        Intent intent = new Intent(MainActivity.this, LocationService.class);
+        intent.setData(Uri.parse("Key To Service"));
+        startService(intent);
 
         mProgressDlg = new ProgressDialog(this);
 

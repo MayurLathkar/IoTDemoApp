@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">IOTDemoApp</string>
+    <string name="app_name"></string>
+    <string name="username">USER NAME</string>
+    <string name="password">PASSWORD</string>
+    <string name="mobile">MOBILE</string>
+    <string name="Connect_mobile">Connect Mobile To The Clock</string>
+    <string name="fragment1_desc">Simply hang to it your wall, open the smart clock app, and with few clicks configure the setting sto your preferences</string>
+    <string name="configure">Configure Your Clock</string>
+    <string name="fragment2_desc">You know what notifications matter most to you. Customize your alerts to what is really important</string>
+    <string name="Online">Be Online!</string>
+    <string name="fragment3_desc">clock that interacts with your home devices and displays information from your favourite apps</string>
 </resources>

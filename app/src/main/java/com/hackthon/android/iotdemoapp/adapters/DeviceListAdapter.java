@@ -1,4 +1,4 @@
-package com.hackthon.android.iotdemoapp;
+package com.hackthon.android.iotdemoapp.adapters;
 
 import java.util.List;
 
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.hackthon.android.iotdemoapp.R;
 
 /**
  * Device list adapter.

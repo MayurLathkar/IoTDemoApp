@@ -1,4 +1,4 @@
-package com.hackthon.android.iotdemoapp;
+package com.hackthon.android.iotdemoapp.ui;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
@@ -8,10 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.hackthon.android.iotdemoapp.R;
+import com.hackthon.android.iotdemoapp.adapters.DeviceListAdapter;
+import com.hackthon.android.iotdemoapp.adapters.WifiListAdapter;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -22,11 +25,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.UUID;
 
-/**
- * Device list.
- *
- * @author Lorensius W. L. T <lorenz@londatiga.net>
- */
+
 public class DeviceListActivity extends Activity {
     private ListView mListView;
     private DeviceListAdapter mAdapter;
@@ -217,12 +216,13 @@ public class DeviceListActivity extends Activity {
                                 bytes = mmInStream.read(buffer);
                                 final String listOfWifi = new String(buffer, 0, bytes);
                                 Log.d("Wifi List==>", listOfWifi);
+                                final String newListOfWifi = listOfWifi.substring(1);
                                 final ArrayList<String> seperatedWifiList = new ArrayList<String>();
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
 
-                                        String[] list = listOfWifi.split(",");
+                                        String[] list = newListOfWifi.split(",");
                                         for (String listItem : list){
                                             seperatedWifiList.add(listItem);
                                         }

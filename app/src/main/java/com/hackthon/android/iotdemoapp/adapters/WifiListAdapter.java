@@ -1,4 +1,4 @@
-package com.hackthon.android.iotdemoapp;
+package com.hackthon.android.iotdemoapp.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.hackthon.android.iotdemoapp.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
@@ -60,19 +64,22 @@ public class WifiListAdapter extends BaseAdapter {
                 final android.support.v7.app.AlertDialog infoDialog = new android.support.v7.app.AlertDialog.Builder(context).create();
                 infoDialog.setView(infoDialogView);
                 ((TextView) infoDialogView.findViewById(R.id.tvName)).setText(list.get(position));
-                final String password = ((TextView) infoDialogView.findViewById(R.id.etInputText)).getEditableText().toString();
                 infoDialogView.findViewById(R.id.btnSingle).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        byte[] wifiData = (list.get(position) + " , " + password).getBytes();
+                        final String password = ((TextView) infoDialogView.findViewById(R.id.etInputText)).getEditableText().toString();
+                        byte[] wifiData = ("{\"ssid\":"+"\""+list.get(position)+"\","+"\"name\":"+"\""+"wifi123"+"\","+"\"password\":"+"\""+password+"\"}").getBytes();
+
                         try {
                             outputStream.write(wifiData);
                         } catch (IOException e) {
                             Log.d("Exception found==>", e.getMessage());
                             e.printStackTrace();
                         }
+                        infoDialog.cancel();
                     }
                 });
+                infoDialog.show();
             }
         });
         return itemView;
