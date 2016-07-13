@@ -14,7 +14,7 @@
         android:gravity="center"
         android:textColor="#64FFDA"
         android:text="Welcome to IOT world"
-        android:padding="10dp"/>
+        android:padding="12dp"/>
     <TextView
         android:id="@+id/tv_status"
         android:layout_marginTop="20dp"
