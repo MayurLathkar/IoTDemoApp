@@ -35,12 +35,15 @@ public class IOTAppIntroActivity extends AppIntro {
     @Override
     public void onSkipPressed(android.support.v4.app.Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
+        Intent intent = new Intent(IOTAppIntroActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
     public void onDonePressed(android.support.v4.app.Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        Intent intent = new Intent(IOTAppIntroActivity.this, MainActivity.class);
+        Intent intent = new Intent(IOTAppIntroActivity.this, DashBoardActivity.class);
         startActivity(intent);
         finish();
     }

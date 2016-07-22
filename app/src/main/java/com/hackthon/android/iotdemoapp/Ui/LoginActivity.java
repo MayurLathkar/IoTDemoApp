@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.hackthon.android.iotdemoapp.IOTApplication;
 import com.hackthon.android.iotdemoapp.R;
 import com.hackthon.android.iotdemoapp.model.User;
 
@@ -28,7 +29,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        if (IOTApplication.getIotApplication().getCurrentUser() != null){
+            Intent intent = new Intent(LoginActivity.this, DashBoardActivity.class);
+            startActivity(intent);
+            finish();
+        }
         intializeAllView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private void intializeAllView() {
@@ -64,6 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         com.android.volley.Response.Listener<User> listener = new Response.Listener<User>() {
             @Override
             public void onResponse(User response) {
+                IOTApplication.getIotApplication().initializeUser(response);
                 Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, IOTAppIntroActivity.class);
                 startActivity(intent);

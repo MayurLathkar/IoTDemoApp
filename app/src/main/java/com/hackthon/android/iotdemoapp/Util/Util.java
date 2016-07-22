@@ -1,4 +1,4 @@
-package com.hackthon.android.iotdemoapp.Util;
+package com.hackthon.android.iotdemoapp.util;
 
 import android.content.Context;
 import android.os.Environment;

@@ -9,4 +9,17 @@
     <string name="fragment2_desc">You know what notifications matter most to you. Customize your alerts to what is really important</string>
     <string name="Online">Be Online!</string>
     <string name="fragment3_desc">clock that interacts with your home devices and displays information from your favourite apps</string>
+    <string name="open">drawer open</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="close">drawer close</string>
+    <string-array name="clocks">
+        <item>Clock1</item>
+        <item>Clock2</item>
+        <item>Clock3</item>
+        <item>Clock4</item>
+        <item>Clock5</item>
+        <item>Clock6</item>
+        <item>Clock7</item>
+    </string-array>
 </resources>

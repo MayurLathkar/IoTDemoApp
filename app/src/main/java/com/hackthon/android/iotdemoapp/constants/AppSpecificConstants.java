@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 
-import com.hackthon.android.iotdemoapp.Util.Util;
+import com.hackthon.android.iotdemoapp.util.Util;
 
 /**
  * Created by Mayur Lathkar on 7/12/2016.

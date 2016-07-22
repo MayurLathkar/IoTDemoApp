@@ -31,7 +31,7 @@
             android:name=".ui.SignUpActivity"
             android:parentActivityName=".ui.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".ui.MainActivity"
             android:screenOrientation="portrait"
@@ -39,7 +39,10 @@
 
         <service android:name=".service.LocationService" />
 
-        <activity android:name=".ui.IOTAppIntroActivity"></activity>
+        <activity android:name=".ui.IOTAppIntroActivity" />
+        <activity android:name=".ui.DashBoardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>
