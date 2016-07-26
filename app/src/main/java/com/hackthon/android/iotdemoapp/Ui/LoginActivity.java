@@ -1,13 +1,16 @@
 package com.hackthon.android.iotdemoapp.ui;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -86,7 +89,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         com.android.volley.Response.ErrorListener onError = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.loginView),"Invalid Credentials", Snackbar.LENGTH_SHORT);
+                View view = snackbar.getView();
+                FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
+                params.gravity = Gravity.TOP;
+                view.setLayoutParams(params);
+                snackbar.show();
             }
         };
         BaseRequestClass.userLoginRequest(LoginActivity.this, body, listener, onError);

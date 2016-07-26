@@ -57,6 +57,10 @@ public class IOTApplication extends Application {
         return this.currentUser;
     }
 
+    public void logout(){
+        IOTApplication.getIotApplication().initializeUser(null, true);
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();

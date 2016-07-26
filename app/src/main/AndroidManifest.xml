@@ -12,7 +12,7 @@
         android:name=".IOTApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="SMART CLOCK"
+        android:label="SmartClock"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
@@ -40,9 +40,27 @@
         <service android:name=".service.LocationService" />
 
         <activity android:name=".ui.IOTAppIntroActivity" />
-        <activity android:name=".ui.DashBoardActivity"
+        <activity
+            android:name=".ui.DashBoardActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.DASHBOARD"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:label="Settings"
+            android:parentActivityName=".ui.DashBoardActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SETTINGS"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

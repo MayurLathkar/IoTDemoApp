@@ -10,15 +10,16 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.AppBarOverLay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            app:titleTextColor="@android:color/white"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:title="Smart Clock"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:background="#0bb961"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="SMART CLOCK" />
 
     </android.support.design.widget.AppBarLayout>
 
