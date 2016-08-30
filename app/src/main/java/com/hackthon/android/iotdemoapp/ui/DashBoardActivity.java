@@ -50,7 +50,7 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
 
     private void setUserData() {
         View headerView = navigationView.getHeaderView(0);
-        ((TextView) headerView.findViewById(R.id.userName)).setText(IOTApplication.getIotApplication().getCurrentUser().getUserName());
+//        ((TextView) headerView.findViewById(R.id.userName)).setText(IOTApplication.getIotApplication().getCurrentUser().getUserName());
     }
 
     @Override

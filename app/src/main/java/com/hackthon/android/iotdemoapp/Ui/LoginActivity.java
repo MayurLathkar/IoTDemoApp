@@ -1,6 +1,7 @@
 package com.hackthon.android.iotdemoapp.ui;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -21,12 +23,12 @@ import com.hackthon.android.iotdemoapp.model.User;
 
 import java.util.HashMap;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener{
+public class LoginActivity extends BaseActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener{
 
     private Button btnLogin;
     private View signUp;
     private CheckBox keepMeIn;
-    private EditText userName, password;
+    private EditText mobile, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin = (Button) findViewById(R.id.btnLogin);
         signUp = findViewById(R.id.signup);
         keepMeIn = (CheckBox) findViewById(R.id.keepMeIn);
-        userName = (EditText) findViewById(R.id.userId);
+        mobile = (EditText) findViewById(R.id.mobile);
         password = (EditText) findViewById(R.id.password);
         keepMeIn.setOnCheckedChangeListener(this);
         btnLogin.setOnClickListener(this);
@@ -60,7 +62,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnLogin :
-                performLogin(userName.getEditableText().toString(), password.getEditableText().toString());
+                if (mobile.getEditableText().toString().equals("") || mobile.getEditableText().toString().length() < 10){
+                    mobile.requestFocus();
+                    mobile.setError("Enter proper mobile number!");
+                } else if (password.getEditableText().toString().equals("")){
+                    password.requestFocus();
+                    password.setError("Enter password");
+                } else {
+                    showProgressDialog("Logging In...");
+                    performLogin(mobile.getEditableText().toString(), password.getEditableText().toString());
+                }
                 break;
 
             case R.id.signup :
@@ -82,6 +93,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, IOTAppIntroActivity.class);
                 startActivity(intent);
+                hideProgressDialog();
                 finish();
             }
         };
@@ -89,8 +101,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         com.android.volley.Response.ErrorListener onError = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                hideProgressDialog();
+                showProgressDialog("Logging in...");
                 Snackbar snackbar = Snackbar.make(findViewById(R.id.loginView),"Invalid Credentials", Snackbar.LENGTH_SHORT);
                 View view = snackbar.getView();
+                view.setBackgroundColor(Color.parseColor("#ff0033"));
                 FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
                 params.gravity = Gravity.TOP;
                 view.setLayoutParams(params);

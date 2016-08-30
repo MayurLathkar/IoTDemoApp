@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.DashBoardActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,16 +40,16 @@
         <service android:name=".service.LocationService" />
 
         <activity android:name=".ui.IOTAppIntroActivity" />
-        <activity
-            android:name=".ui.DashBoardActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.DASHBOARD"/>
+        <!--<activity-->
+            <!--android:name=".ui.DashBoardActivity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@style/Theme.AppCompat.NoActionBar" >-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.DASHBOARD"/>-->
 
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
+                <!--<category android:name="android.intent.category.DEFAULT"/>-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
         <activity android:name=".ui.SettingsActivity"
             android:screenOrientation="portrait"
             android:label="Settings"
